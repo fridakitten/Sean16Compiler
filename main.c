@@ -9,9 +9,30 @@
 #include <libasmfile.h>
 #include <code.h>
 
-// CPU
+// CPU - Main
 #define EXT   0x00
 #define STO   0x01
+#define ADD   0x02
+#define SUB   0x03
+#define MUL   0x04
+#define DIV   0x05
+#define DSP   0x06     //DEBUG INSTRUCTION
+#define JMP   0x07
+#define IFQ   0x08
+
+// CPU - Peripherals
+#define MUS   0x09
+
+// CPU - Clocl
+#define SSP   0xB0
+#define NSP   0xB1  
+
+// GPU - Main
+#define GPX   0xA0
+#define GDL   0xA1
+#define GDC   0xA2
+#define GCS   0xA3
+#define GGC   0xA4
 
 uint8_t rval(const char *input) {
     int base_value = 0;
