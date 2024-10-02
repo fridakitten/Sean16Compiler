@@ -37,12 +37,12 @@
 uint8_t rval(const char *input) {
     int base_value = 0;
     if (input[0] == 'R') {
-        printf("R");
+        //printf("R");
         base_value = 0;
         input++;  // Skip the 'R'
     } else {
-        printf("B");
-        base_value = 64;
+        //printf("B");
+        base_value = 65;
     }
 
     int number = atoi(input);
@@ -66,55 +66,55 @@ int main(int argc, char *argv[]) {
 
         if (strcmp("EXT", raw[i][0]) == 0) {
             array[i][0] = EXT;
-            printf("+");
+            //printf("+");
         } else if (strcmp("STO", raw[i][0]) == 0) {
             array[i][0] = STO;
-            printf("+");
+            //printf("+");
         } else if (strcmp("ADD", raw[i][0]) == 0) {
             array[i][0] = ADD;
-            printf("+");
+            //printf("+");
         } else if (strcmp("SUB", raw[i][0]) == 0) {
             array[i][0] = SUB;
-            printf("+");
+            //printf("+");
         } else if (strcmp("MUL", raw[i][0]) == 0) {
             array[i][0] = MUL;
-            printf("+");
+            //printf("+");
         } else if (strcmp("DIV", raw[i][0]) == 0) {
             array[i][0] = DIV;
-            printf("+");
+            //printf("+");
         } else if (strcmp("DSP", raw[i][0]) == 0) {
             array[i][0] = DSP;
-            printf("+");
+            //printf("+");
         } else if (strcmp("JMP", raw[i][0]) == 0) {
             array[i][0] = JMP;
-            printf("+");
+            //printf("+");
         } else if (strcmp("IFQ", raw[i][0]) == 0) {
             array[i][0] = IFQ;
-            printf("+");
+            //printf("+");
         } else if (strcmp("MUS", raw[i][0]) == 0) {
             array[i][0] = MUS;
-            printf("+");
+            //printf("+");
         } else if (strcmp("SSP", raw[i][0]) == 0) {
             array[i][0] = SSP;
-            printf("+");
+            //printf("+");
         } else if (strcmp("NSP", raw[i][0]) == 0) {
             array[i][0] = NSP;
-            printf("+");
+            //printf("+");
         } else if (strcmp("GPX", raw[i][0]) == 0) {
             array[i][0] = GPX;
-            printf("+");
+            //printf("+");
         } else if (strcmp("GDL", raw[i][0]) == 0) {
             array[i][0] = GDL;
-            printf("+");
+            //printf("+");
         } else if (strcmp("GDC", raw[i][0]) == 0) {
             array[i][0] = GDC;
-            printf("+");
+            //printf("+");
         } else if (strcmp("GCS", raw[i][0]) == 0) {
             array[i][0] = GCS;
-            printf("+");
+            //printf("+");
         } else if (strcmp("GGC", raw[i][0]) == 0) {
             array[i][0] = GGC;
-            printf("+");
+            //printf("+");
         }
 
         for (int j = 0; j < 5; j++) {
@@ -124,20 +124,22 @@ int main(int argc, char *argv[]) {
                 array[i][j + 1] = 0;
             }
         }
+
+        printf("0x%02X 0x%02X 0x%02X 0x%02X 0x%02X 0x%02X\n", array[i][0], array[i][1], array[i][2], array[i][3], array[i][4], array[i][5]);
     }
-    printf("\n");
     printf("[*] bindto output.bin\n");
     
     uint8_t binmap[MAX_LINES * MAX_WORDS];
-    for(int i = 0; i < MAX_LINES; i++) {
-        for(int j = 0; j < MAX_WORDS; j++) {
-            binmap[i + j] = array[i][j];
+    for (int i = 0; i < MAX_LINES; i++) {
+        for (int j = 0; j < MAX_WORDS; j++) {
+            binmap[i * MAX_WORDS + j] = array[i][j];  // Correct index mapping
         }
     }
 
-
     // Store compiled code
     storeasm("output.bin", binmap, MAX_LINES * MAX_WORDS);
+
+    printf("[*] done :3\n");
 
     return 0;
 }
