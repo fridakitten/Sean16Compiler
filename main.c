@@ -102,7 +102,7 @@ int main(int argc, char *argv[]) {
         roffset++;
     }
 
-    roffset = 0;
+    roffset = 1;
     printf("[*] compile\n");
     for (int i = 0; i < MAX_LINES; i++) {
         if (raw[i] == NULL || raw[i][0] == NULL) {
