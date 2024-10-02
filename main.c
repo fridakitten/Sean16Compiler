@@ -67,9 +67,53 @@ int main(int argc, char *argv[]) {
         if (strcmp("EXT", raw[i][0]) == 0) {
             array[i][0] = EXT;
             printf("+");
-        }
-        if (strcmp("STO", raw[i][0]) == 0) {
+        } else if (strcmp("STO", raw[i][0]) == 0) {
             array[i][0] = STO;
+            printf("+");
+        } else if (strcmp("ADD", raw[i][0]) == 0) {
+            array[i][0] = ADD;
+            printf("+");
+        } else if (strcmp("SUB", raw[i][0]) == 0) {
+            array[i][0] = SUB;
+            printf("+");
+        } else if (strcmp("MUL", raw[i][0]) == 0) {
+            array[i][0] = MUL;
+            printf("+");
+        } else if (strcmp("DIV", raw[i][0]) == 0) {
+            array[i][0] = DIV;
+            printf("+");
+        } else if (strcmp("DSP", raw[i][0]) == 0) {
+            array[i][0] = DSP;
+            printf("+");
+        } else if (strcmp("JMP", raw[i][0]) == 0) {
+            array[i][0] = JMP;
+            printf("+");
+        } else if (strcmp("IFQ", raw[i][0]) == 0) {
+            array[i][0] = IFQ;
+            printf("+");
+        } else if (strcmp("MUS", raw[i][0]) == 0) {
+            array[i][0] = MUS;
+            printf("+");
+        } else if (strcmp("SSP", raw[i][0]) == 0) {
+            array[i][0] = SSP;
+            printf("+");
+        } else if (strcmp("NSP", raw[i][0]) == 0) {
+            array[i][0] = NSP;
+            printf("+");
+        } else if (strcmp("GPX", raw[i][0]) == 0) {
+            array[i][0] = GPX;
+            printf("+");
+        } else if (strcmp("GDL", raw[i][0]) == 0) {
+            array[i][0] = GDL;
+            printf("+");
+        } else if (strcmp("GDC", raw[i][0]) == 0) {
+            array[i][0] = GDC;
+            printf("+");
+        } else if (strcmp("GCS", raw[i][0]) == 0) {
+            array[i][0] = GCS;
+            printf("+");
+        } else if (strcmp("GGC", raw[i][0]) == 0) {
+            array[i][0] = GGC;
             printf("+");
         }
 

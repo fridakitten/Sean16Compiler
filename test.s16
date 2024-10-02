@@ -1,2 +1,3 @@
 STO R5 10
+JMP 0
 EXT
