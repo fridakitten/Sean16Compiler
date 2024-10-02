@@ -126,10 +126,18 @@ int main(int argc, char *argv[]) {
         }
     }
     printf("\n");
-    printf("[*] done :3\n");
+    printf("[*] bindto output.bin\n");
+    
+    uint8_t binmap[MAX_LINES * MAX_WORDS];
+    for(int i = 0; i < MAX_LINES; i++) {
+        for(int j = 0; j < MAX_WORDS; j++) {
+            binmap[i + j] = array[i][j];
+        }
+    }
+
 
     // Store compiled code
-    // storeasm("output.bin", array, MAX_LINES * MAX_WORDS);
+    storeasm("output.bin", binmap, MAX_LINES * MAX_WORDS);
 
     return 0;
 }
