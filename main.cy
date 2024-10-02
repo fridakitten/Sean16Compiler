@@ -14,7 +14,7 @@ int main() {
     uint8_t **binmap = readasm("output.bin");
 
     for(int i = 0; i < 6; i++) {
-        printf("%d\n", binmap[0][i]);
+        printf("%d\n", binmap[i]);
     }
 
     return 0;
