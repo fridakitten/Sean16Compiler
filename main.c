@@ -83,7 +83,7 @@ int main(int argc, char *argv[]) {
 
     static LABEL symbols[126];
     static uint16_t sym_count = 0;
-    static uint16_t roffset = 0;
+    static uint16_t roffset = 1;
 
     printf("[*] compile\n");
     for (int i = 0; i < MAX_LINES; i++) {
@@ -164,6 +164,15 @@ int main(int argc, char *argv[]) {
         printf("0x%02X 0x%02X 0x%02X 0x%02X 0x%02X 0x%02X\n", array[roffset][0], array[roffset][1], array[roffset][2], array[roffset][3], array[roffset][4], array[roffset][5]);
         roffset++;
     }
+    if(strcmp(symbols[sym_count - 1].modified_str, "MAIN") == 0) {
+        printf("[#] \"MAIN\" LABEL found at %d\n", symbols[sym_count - 1].offset);
+        array[0][0] = JMP;
+        array[0][1] = symbols[sym_count - 1].offset + 65;
+    } else {
+        printf("[!] \"MAIN\" LABEL not found. Make sure that its the last LABEL!\n");
+        return 1;
+    }
+
     printf("[*] bindto output.bin\n");
     
     uint8_t binmap[MAX_LINES * MAX_WORDS];
