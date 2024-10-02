@@ -138,7 +138,7 @@ int main(int argc, char *argv[]) {
                 }
             }
         } else if (strcmp("IFQ", raw[i][0]) == 0) {
-            array[i][0] = IFQ;
+            array[roffset][0] = IFQ;
             for(int h = 0; h < 128; h++) {
                 if(symbols[h].had_colon) {
                     if(strcmp(raw[i][4], symbols[h].modified_str) == 0) {
