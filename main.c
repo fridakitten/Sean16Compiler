@@ -85,7 +85,7 @@ int main(int argc, char *argv[]) {
     static uint16_t sym_count = 0;
     static uint16_t roffset = 1;
 
-    printf("[*] compile\n");
+    printf("[*] getting label addresses\n");
     for (int i = 0; i < MAX_LINES; i++) {
         if (raw[i] == NULL || raw[i][0] == NULL) {
             break; 
@@ -94,8 +94,23 @@ int main(int argc, char *argv[]) {
         symbols[sym_count] = labelcheck(raw[i][0]);
         if(symbols[sym_count].had_colon) {
             symbols[sym_count].offset = roffset;
-            printf("[#] %s => %d\n", symbols[sym_count].modified_str, symbols[sym_count].offset);
+            printf("%s => %d\n", symbols[sym_count].modified_str, symbols[sym_count].offset);
             sym_count++;
+            i++;
+        }
+
+        roffset++;
+    }
+
+    roffset = 0;
+    printf("[*] compile\n");
+    for (int i = 0; i < MAX_LINES; i++) {
+        if (raw[i] == NULL || raw[i][0] == NULL) {
+            break; 
+        }
+
+        LABEL checklabel = labelcheck(raw[i][0]);
+        if(checklabel.had_colon) {
             i++;
         }
 
@@ -165,7 +180,7 @@ int main(int argc, char *argv[]) {
         roffset++;
     }
     if(strcmp(symbols[sym_count - 1].modified_str, "MAIN") == 0) {
-        printf("[#] \"MAIN\" LABEL found at %d\n", symbols[sym_count - 1].offset);
+        printf("[*] \"MAIN\" LABEL found at %d\n", symbols[sym_count - 1].offset);
         array[0][0] = JMP;
         array[0][1] = symbols[sym_count - 1].offset + 65;
     } else {
