@@ -119,7 +119,11 @@ int main(int argc, char *argv[]) {
 
         for (int j = 0; j < 5; j++) {
             if (raw[i][j + 1] != NULL) {
-                array[i][j + 1] = rval(raw[i][j + 1]);
+                if(strcmp(raw[i][j + 1], ";") != 0) {
+                    array[i][j + 1] = rval(raw[i][j + 1]);
+                } else {
+                    break;
+                }
             } else {
                 array[i][j + 1] = 0;
             }
