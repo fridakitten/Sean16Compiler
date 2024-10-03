@@ -20,6 +20,7 @@
 #define DSP   0x06     //DEBUG INSTRUCTION
 #define JMP   0x07
 #define IFQ   0x08
+#define RAN   0x0A
 
 // CPU - Peripherals
 #define MUS   0x09
@@ -158,6 +159,8 @@ int main(int argc, char *argv[]) {
             if (!label_found) {
                 sprintf(raw[i][4], "%d", roffset + atoi(raw[i][4]));
             }
+        } else if (strcmp("RAN", raw[i][0]) == 0) {
+            array[roffset][0] = RAN;
         } else if (strcmp("MUS", raw[i][0]) == 0) {
             array[roffset][0] = MUS;
         } else if (strcmp("SSP", raw[i][0]) == 0) {
@@ -188,7 +191,7 @@ int main(int argc, char *argv[]) {
             }
         }
 
-        printf("%02d: 0x%02X 0x%02X 0x%02X 0x%02X 0x%02X 0x%02X\n", i, array[roffset][0], array[roffset][1], array[roffset][2], array[roffset][3], array[roffset][4], array[roffset][5]);
+        printf("%02d: 0x%02X 0x%02X 0x%02X 0x%02X 0x%02X 0x%02X\n", roffset, array[roffset][0], array[roffset][1], array[roffset][2], array[roffset][3], array[roffset][4], array[roffset][5]);
         roffset++;
     }
     if(strcmp(symbols[sym_count - 1].modified_str, "MAIN") == 0) {
