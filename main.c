@@ -130,21 +130,33 @@ int main(int argc, char *argv[]) {
             array[roffset][0] = DSP;
         } else if (strcmp("JMP", raw[i][0]) == 0) {
             array[roffset][0] = JMP;
-            for(int h = 0; h < 128; h++) {
-                if(symbols[h].had_colon) {
-                    if(strcmp(raw[i][1], symbols[h].modified_str) == 0) {
-                        sprintf(raw[i][1], "%d", symbols[h].offset);
-                    }
+            bool label_found = false;
+
+            for (int h = 0; h < sym_count - 1; h++) {
+                if (symbols[h].had_colon && strcmp(raw[i][1], symbols[h].modified_str) == 0) {
+                    sprintf(raw[i][1], "%d", symbols[h].offset);
+                    label_found = true;
+                    break;
                 }
+            }
+
+            if (!label_found) {
+                sprintf(raw[i][1], "%d", roffset + atoi(raw[i][1]));
             }
         } else if (strcmp("IFQ", raw[i][0]) == 0) {
             array[roffset][0] = IFQ;
-            for(int h = 0; h < 128; h++) {
-                if(symbols[h].had_colon) {
-                    if(strcmp(raw[i][4], symbols[h].modified_str) == 0) {
-                        sprintf(raw[i][4], "%d", symbols[h].offset);
-                    }
+            bool label_found = false;
+
+            for (int h = 0; h < sym_count - 1; h++) {
+                if (symbols[h].had_colon && strcmp(raw[i][4], symbols[h].modified_str) == 0) {
+                    sprintf(raw[i][4], "%d", symbols[h].offset);
+                    label_found = true;
+                    break;
                 }
+            }
+
+            if (!label_found) {
+                sprintf(raw[i][4], "%d", roffset + atoi(raw[i][4]));
             }
         } else if (strcmp("MUS", raw[i][0]) == 0) {
             array[roffset][0] = MUS;
@@ -176,7 +188,7 @@ int main(int argc, char *argv[]) {
             }
         }
 
-        printf("0x%02X 0x%02X 0x%02X 0x%02X 0x%02X 0x%02X\n", array[roffset][0], array[roffset][1], array[roffset][2], array[roffset][3], array[roffset][4], array[roffset][5]);
+        printf("%02d: 0x%02X 0x%02X 0x%02X 0x%02X 0x%02X 0x%02X\n", i, array[roffset][0], array[roffset][1], array[roffset][2], array[roffset][3], array[roffset][4], array[roffset][5]);
         roffset++;
     }
     if(strcmp(symbols[sym_count - 1].modified_str, "MAIN") == 0) {
