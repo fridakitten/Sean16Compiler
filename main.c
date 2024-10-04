@@ -194,6 +194,7 @@ int main(int argc, char *argv[]) {
         printf("%02d: 0x%02X 0x%02X 0x%02X 0x%02X 0x%02X 0x%02X\n", roffset, array[roffset][0], array[roffset][1], array[roffset][2], array[roffset][3], array[roffset][4], array[roffset][5]);
         roffset++;
     }
+    printf("[*] %db of 6144b used\n", roffset * 6);
     if(strcmp(symbols[sym_count - 1].modified_str, "MAIN") == 0) {
         printf("[*] \"MAIN\" LABEL found at %d\n", symbols[sym_count - 1].offset);
         array[0][0] = JMP;
