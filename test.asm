@@ -1,6 +1,3 @@
-EARL:
-	SSP 5
-	EXT
 BTNINIT:
 	STO R0 5                      ; BTN VALUE
 	STO R1 15

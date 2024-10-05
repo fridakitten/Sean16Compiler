@@ -27,7 +27,7 @@
 
 // CPU - Clocl
 #define SSP   0xB0
-#define NSP   0xB1  
+#define NSP   0xB1
 
 // GPU - Main
 #define GPX   0xA0
@@ -74,8 +74,8 @@ uint8_t rval(const char *input) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        printf("Usage: %s <input_file>\n", argv[0]);
+    if (argc < 3) {
+        printf("Usage: %s <input file> <output file>\n", argv[0]);
         return 1;
     }
 
@@ -204,8 +204,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    printf("[*] bindto output.bin\n");
-    
+    printf("[*] bind to %s\n", argv[2]);
+
     uint8_t binmap[MAX_LINES * MAX_WORDS];
     for (int i = 0; i < MAX_LINES; i++) {
         for (int j = 0; j < MAX_WORDS; j++) {
@@ -213,7 +213,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    storeasm("output.bin", binmap, MAX_LINES * MAX_WORDS);
+    storeasm(argv[2], binmap, MAX_LINES * MAX_WORDS);
 
     printf("[*] done :3\n");
 
