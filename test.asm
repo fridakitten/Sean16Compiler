@@ -37,11 +37,11 @@ BTNINIT:
         STO R4 8
         GDC R4 R28 67 7
         ADD R4 6
-        GDC R4 R28 111 7
-        ADD R4 6
         GDC R4 R28 108 7
         ADD R4 6
-        GDC R4 R28 111 7
+        GDC R4 R28 101 7
+        ADD R4 6
+        GDC R4 R28 97 7
         ADD R4 6
         GDC R4 R28 114 7
 BTN:
@@ -60,10 +60,10 @@ BTN:
 	JMP MOUSE
 BTNHL:
 	MUS R10 R11 R12               ; Get Mouse Information from Peripherals Page
-	GDL R0 R0 R0 R1 7             ; R0 R1 => R0 R2 LEADING
-	GDL R0 R0 R2 R0 7             ; R0 R1 => R0 R3 TOP
-	GDL R2 R0 R2 R1 7             ; R3 R1 => R3 R2 TRAILING
-	GDL R0 R1 R2 R1 7             ; R0 R2 => R3 R2 BOTTOM
+	GDL R0 R0 R0 R1 R23           ; R0 R1 => R0 R2 LEADING
+	GDL R0 R0 R2 R0 R23           ; R0 R1 => R0 R3 TOP
+	GDL R2 R0 R2 R1 R23           ; R3 R1 => R3 R2 TRAILING
+	GDL R0 R1 R2 R1 R23           ; R0 R2 => R3 R2 BOTTOM
 	IFQ 1 R10 R2 7                ; Check for Cursor Button Colision on Click
 	IFQ 1 R11 R1 6
 	IFQ 2 R10 R0 5
@@ -74,10 +74,10 @@ BTNHL:
 	JMP BTN
 BTNDHL:
 	MUS R10 R11 R12               ; Get Mouse Information from Peripherals Page
-	GDL R15 R16 R15 R17 7         ; R0 R1 => R0 R2 LEADING
-	GDL R15 R16 R18 R16 7         ; R0 R1 => R0 R3 TOP
-	GDL R18 R16 R18 R17 7         ; R3 R1 => R3 R2 TRAILING
-	GDL R15 R17 R18 R17 7         ; R0 R2 => R3 R2 BOTTOM
+	GDL R15 R16 R15 R17 R23       ; R0 R1 => R0 R2 LEADING
+	GDL R15 R16 R18 R16 R23       ; R0 R1 => R0 R3 TOP
+	GDL R18 R16 R18 R17 R23       ; R3 R1 => R3 R2 TRAILING
+	GDL R15 R17 R18 R17 R23       ; R0 R2 => R3 R2 BOTTOM
         IFQ 1 R10 R18 7               ; Check for Cursor Button Colision on Click
         IFQ 1 R11 R17 6
         IFQ 2 R10 R15 5
@@ -88,10 +88,10 @@ BTNDHL:
 	JMP BTN
 BTNCHL:
         MUS R10 R11 R12               ; Get Mouse Information from Peripherals Page
-        GDL R24 R25 R24 R26 7         ; R0 R1 => R0 R2 LEADING
-        GDL R24 R25 R27 R25 7         ; R0 R1 => R0 R3 TOP
-        GDL R27 R25 R27 R26 7         ; R3 R1 => R3 R2 TRAILING
-        GDL R24 R26 R27 R26 7         ; R0 R2 => R3 R2 BOTTOM
+        GDL R24 R25 R24 R26 R23       ; R0 R1 => R0 R2 LEADING
+        GDL R24 R25 R27 R25 R23        ; R0 R1 => R0 R3 TOP
+        GDL R27 R25 R27 R26 R23       ; R3 R1 => R3 R2 TRAILING
+        GDL R24 R26 R27 R26 R23       ; R0 R2 => R3 R2 BOTTOM
         IFQ 1 R10 R27 8               ; Check for Cursor Button Colision on Click
         IFQ 1 R11 R26 7
         IFQ 2 R10 R24 6
